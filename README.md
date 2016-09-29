@@ -5,13 +5,19 @@
 
 ![roncoo_adminLte](http://www.roncoo.com/images/adminlte.png)
 
-[ ![download](http://www.roncoo.com/images/dl.png) ](https://github.com/roncoo/roncoo-adminLTE/archive/master.zip)  [ ![preview] (http://www.roncoo.com/images/pv.png)](http://demo.adminlte.roncoo.com)
-
 ###一些事一些情
-对于一个平台的管理后台，功能必然要足够强大，但界面也不可忽略，特别是近年来行业对界面的越加重视使得后台界面也要做得 ‘ 高大上 ’ 起来；可惜国内至今未能找到一款免费开源的稍微高大上点后台模板，用国内模板的都会引来 leader的各种吐槽；而国外虽然有很多很优秀的模板，但由于都没有中文版或者担心社区不够强大而不敢使用；针对这一点龙果团队决定为国民谋利，找了一款国外非常优秀的后台模板AdminLTE，并在AdminLTE上面做了多项优化，并进行了汉化，免费开源给国民开发者使用，并对AdminLTE后期的更新做维护。
+对于一个平台的管理后台，功能必然要足够强大，但界面也不可忽略，
+
+
+----------
+
+
+特别是近年来行业对界面的越加重视使得后台界面也要做得 ‘ 高大上 ’ 起来；可惜国内至今未能找到一款免费开源的稍微高大上点后台模板，用国内模板的都会引来 leader的各种吐槽；而国外虽然有很多很优秀的模板，但由于都没有中文版或者担心社区不够强大而不敢使用；针对这一点龙果团队决定为国民谋利，找了一款国外非常优秀的后台模板AdminLTE，并在AdminLTE上面做了多项优化，并进行了汉化，免费开源给国民开发者使用，并对AdminLTE后期的更新做维护。
 
 ###简介
 **RonCoo AdminLTE** --是一个完全响应式的免费开源后台管理模板。基于 **[AdminLTE](https://github.com/almasaeed2010/AdminLTE)** 框架，易于使用，并高度可定制，适合许多屏幕分辨率从小型移动设备到大型台式机，这是国内的开源模板未支持的。
+
+#####在线预览：[demo.adminlte.roncoo.com](http://demo.adminlte.roncoo.com/)
 
 ###重要说明
  **RonCoo AdminLTE** 框架基于AdminLTE 的最新版本 **[2.3.6](https://github.com/almasaeed2010/AdminLTE/tree/v2.3.6)**，后续会随着AdminLET版本更新而更新。
