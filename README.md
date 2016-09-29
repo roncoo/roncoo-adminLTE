@@ -3,6 +3,9 @@
 [![npm version](https://img.shields.io/npm/v/admin-lte.svg)](https://www.npmjs.com/package/admin-lte)
 [![Packagist](https://img.shields.io/packagist/v/almasaeed2010/adminlte.svg)](https://packagist.org/packages/almasaeed2010/adminlte)
 
+![roncoo_adminLte](http://www.roncoo.com/images/adminlte.png)
+[ ![download](http://www.roncoo.com/images/dl.png) ](https://github.com/roncoo/roncoo-adminLTE/archive/master.zip)  [ ![preview] (http://www.roncoo.com/images/pv.png)](http://demo.adminlte.roncoo.com)
+
 ###一些事一些情
 对于一个平台的管理后台，功能必然要足够强大，但界面也不可忽略，特别是近年来行业对界面的越加重视使得后台界面也要做得 ‘ 高大上 ’ 起来；可惜国内至今未能找到一款免费开源的稍微高大上点后台模板，用国内模板的都会引来 leader的各种吐槽；而国外虽然有很多很优秀的模板，但由于都没有中文版或者担心社区不够强大而不敢使用；针对这一点龙果团队决定为国民谋利，找了一款国外非常优秀的后台模板AdminLTE，并在AdminLTE上面做了多项优化，并进行了汉化，免费开源给国民开发者使用，并对AdminLTE后期的更新做维护。
 
@@ -39,7 +42,7 @@ grunt
 ```
 ####项目目录
 ```
-AdminLTE/
+roncoo-AdminLTE/
 ├── dist/ 编译后的静态资源目录
 │   ├── CSS/
 │   ├── JS
@@ -47,13 +50,13 @@ AdminLTE/
 │   ├── img
 ├── build/ 编译前的源文件目录
 │   ├── less/
-│   │   ├── AdminLTE's Less 文件
+│   │   ├── roncoo-AdminLTE's Less 文件
 │   ├── fonts/
-│   │   ├── AdminLTE's 字体 文件
+│   │   ├── roncoo-AdminLTE's 字体 文件
 │   ├── js/
-│   │   ├── AdminLTE's javascript 文件
+│   │   ├── roncoo-AdminLTE's javascript 文件
 │   ├── img/
-│   │   ├── AdminLTE's image 文件
+│   │   ├── roncoo-AdminLTE's image 文件
 │   └── Bootstrap-less/ (bootstrap less，仅供参考，不做修改)
 │       ├── mixins/
 │       ├── variables.less
