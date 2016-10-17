@@ -6,8 +6,8 @@ module.exports = function (grunt) {
   grunt.initConfig({
     watch: {
       // If any .less file changes in directory "build/less/" run the "less"-task.
-      files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.js"],
-      tasks: ["less", "uglify"]
+      files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/*.js", "dist/js/*/*.js"],
+      tasks: ["less", "uglify",]
     },
     // "less"-task configuration
     // This task will compile all less files upon saving to create both AdminLTE.css and AdminLTE.min.css
@@ -21,6 +21,8 @@ module.exports = function (grunt) {
         files: {
           // compilation.css  :  source.less
           "dist/css/AdminLTE.css": "build/less/AdminLTE.less",
+          "dist/css/login2.css": "build/less/login2.less",
+          "dist/css/login3.css": "build/less/login3.less",
           "dist/css/ionicons.css": "build/less/ionicons.less",
           "dist/css/font-awesome.css": "build/less/font-awesome.less",
           //Non minified skin files
@@ -75,14 +77,15 @@ module.exports = function (grunt) {
       },
       my_target: {
         files: {
-          'dist/js/app.min.js': ['dist/js/app.js']
+          'build/js/app.min.js': ['build/js/app.js']
         }
       }
     },
     copy: {
       main: {
         files: [
-          {expand: true, cwd: 'build/fonts/', src: ['**'], dest: 'dist/fonts/'}
+          {expand: true, cwd: 'build/fonts/', src: ['**'], dest: 'dist/fonts/'},
+          {expand: true, cwd: 'build/js/', src: ['**'], dest: 'dist/js/'}
         ]
       }
     },
@@ -194,5 +197,5 @@ module.exports = function (grunt) {
   grunt.registerTask('lint', ['jshint', 'csslint', 'bootlint']);
 
   // The default task (running "grunt" in console) is "watch"
-  grunt.registerTask('default', ['copy','connect','watch']);
+  grunt.registerTask('default', ['copy','image','less','connect','watch']);
 };

@@ -10,7 +10,7 @@
   "laxbreak" : true,
   "nonbsp"   : true,
   "strict"   : true,
-  "undef"    : true,
+  "undef"    : false,
   "unused"   : true,
   // External variabls and plugins
   "predef":  [ "AdminLTEOptions", "FastClick", "moment", "Morris", "Chart" ]
