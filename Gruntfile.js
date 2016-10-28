@@ -77,7 +77,8 @@ module.exports = function (grunt) {
       },
       my_target: {
         files: {
-          'build/js/app.min.js': ['build/js/app.js']
+          'build/js/app.min.js': ['build/js/app.js'],
+          'dist/js/app.min.js': ['build/js/app.js']
         }
       }
     },
@@ -197,5 +198,5 @@ module.exports = function (grunt) {
   grunt.registerTask('lint', ['jshint', 'csslint', 'bootlint']);
 
   // The default task (running "grunt" in console) is "watch"
-  grunt.registerTask('default', ['copy','image','less','connect','watch']);
+  grunt.registerTask('default', ['uglify','less','copy','image','connect','watch']);
 };

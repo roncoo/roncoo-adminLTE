@@ -22,7 +22,7 @@
               </div>
             </div>
             <div class="box-body chart-responsive">
-              <div class="chart" id="revenue-chart" style="height: 300px;"></div>
+              <div class="chart" id="morris-revenue-chart" style="height: 300px;"></div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -40,7 +40,7 @@
               </div>
             </div>
             <div class="box-body chart-responsive">
-              <div class="chart" id="sales-chart" style="height: 300px; position: relative;"></div>
+              <div class="chart" id="morris-sales-chart" style="height: 300px; position: relative;"></div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -61,7 +61,7 @@
               </div>
             </div>
             <div class="box-body chart-responsive">
-              <div class="chart" id="line-chart" style="height: 300px;"></div>
+              <div class="chart" id="morris-line-chart" style="height: 300px;"></div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -79,7 +79,7 @@
               </div>
             </div>
             <div class="box-body chart-responsive">
-              <div class="chart" id="bar-chart" style="height: 300px;"></div>
+              <div class="chart" id="morris-bar-chart" style="height: 300px;"></div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -90,8 +90,6 @@
       </div>
       <!-- /.row -->
 
-<script src="plugins/raphael/raphael.min.js"></script>
-<script src="plugins/morris/morris.min.js"></script>
 <!-- page script -->
 <script>
   $(function () {
@@ -99,7 +97,7 @@
 
     // AREA CHART
     var area = new Morris.Area({
-      element: 'revenue-chart',
+      element: 'morris-revenue-chart',
       resize: true,
       data: [
         {y: '2011 Q1', item1: 2666, item2: 2666},
@@ -122,7 +120,7 @@
 
     // LINE CHART
     var line = new Morris.Line({
-      element: 'line-chart',
+      element: 'morris-line-chart',
       resize: true,
       data: [
         {y: '2011 Q1', item1: 2666},
@@ -145,7 +143,7 @@
 
     //DONUT CHART
     var donut = new Morris.Donut({
-      element: 'sales-chart',
+      element: 'morris-sales-chart',
       resize: true,
       colors: ["#3c8dbc", "#f56954", "#00a65a"],
       data: [
@@ -157,7 +155,7 @@
     });
     //BAR CHART
     var bar = new Morris.Bar({
-      element: 'bar-chart',
+      element: 'morris-bar-chart',
       resize: true,
       data: [
         {y: '2006', a: 100, b: 90},

@@ -129,3 +129,18 @@
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 0;
 }
+.skin-green .content-header-navtabs .tabs-page {
+  background: #181f23;
+}
+.skin-green .content-header-navtabs li {
+  color: #b8c7ce;
+  border-right: 1px solid #141a1d;
+}
+.skin-green .content-header-navtabs li.active {
+  background-color: #222d32;
+  color: #fff;
+}
+.skin-green .content-header-navtabs li:hover {
+  color: #fff;
+  background-color: #1c2529;
+}

@@ -146,6 +146,21 @@
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 0;
 }
+.skin-purple-light .content-header-navtabs .tabs-page {
+  background: #f9fafc;
+}
+.skin-purple-light .content-header-navtabs li {
+  color: #444444;
+  border-right: 1px solid #e1e6f0;
+}
+.skin-purple-light .content-header-navtabs li.active {
+  background-color: #e8ecf4;
+  color: #111;
+}
+.skin-purple-light .content-header-navtabs li:hover {
+  color: #111;
+  background-color: #eff1f7;
+}
 @media (min-width: 768px) {
   .skin-purple-light.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
     border-left: 1px solid #d2d6de;

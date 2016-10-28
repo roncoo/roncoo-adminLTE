@@ -25,6 +25,7 @@ body {
   font-weight: 400;
   overflow-x: hidden;
   overflow-y: auto;
+  background: none;
 }
 /* Layout */
 .wrapper {
@@ -362,6 +363,81 @@ a:focus {
     color: #97a0b3;
   }
 }
+.content-header-navtabs .tabs-page {
+  padding: 0 14px;
+  border-bottom: 1px solid #d2d6de;
+  position: relative;
+}
+.content-header-navtabs .tabs-page > a {
+  position: absolute;
+  display: none;
+  width: 14px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 40px;
+  background-color: #f9fafc;
+}
+.content-header-navtabs .tabs-page .prev {
+  left: 0;
+  top: 0;
+  border-right: 1px solid #ddd;
+}
+.content-header-navtabs .tabs-page .next {
+  right: 0;
+  top: 0;
+  border-left: 1px solid #ddd;
+}
+.content-header-navtabs .tabs-page.more > a {
+  display: block;
+}
+.content-header-navtabs .tabs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  transition: margin .5s;
+}
+.content-header-navtabs .tabs-list li {
+  float: left;
+  color: #333;
+  position: relative;
+  line-height: 40px;
+  cursor: pointer;
+}
+.content-header-navtabs .tabs-list li:hover .fa-close,
+.content-header-navtabs .tabs-list li.active .fa-close {
+  display: block;
+}
+.content-header-navtabs .tabs-list .fa-close {
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 8px;
+  color: #bbb;
+}
+.content-header-navtabs .tabs-list .fa-close:hover {
+  color: #333;
+}
+.content-header-navtabs .tabs-list span {
+  width: 105px;
+  display: block;
+  padding: 0 20px 0 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fixed .content-header-navtabs {
+  position: fixed;
+  left: 230px;
+  right: 0;
+  top: 50px;
+  z-index: 19;
+}
+.fixed.ajax-template .content {
+  margin-top: 40px;
+}
+.sidebar-collapse .content-header-navtabs {
+  left: 50px;
+}
 .navbar-toggle {
   color: #fff;
   border: 0;
@@ -383,6 +459,12 @@ a:focus {
   }
 }
 @media (max-width: 767px) {
+  .content-header-navtabs {
+    display: none;
+  }
+  #content {
+    margin-top: 0;
+  }
   .main-header {
     position: relative;
   }
@@ -2430,6 +2512,15 @@ a:focus {
   line-height: 40px;
   text-align: center;
   font-size: 16px;
+}
+#alertMsgBox {
+  display: none;
+  position: fixed;
+  z-index: 1300;
+  top: 10px;
+  left: 50%;
+  width: 260px;
+  margin-left: -130px;
 }
 /*
  * Component: Nav

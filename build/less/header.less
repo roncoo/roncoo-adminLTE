@@ -190,6 +190,88 @@
     }
   }
 }
+.content-header-navtabs{
+  .tabs-page{
+    padding:0 14px;
+    border-bottom: 1px solid #d2d6de;
+    position: relative;  
+    &>a{
+      position: absolute;
+      display: none;
+      width: 14px;
+      font-size: 12px;
+      text-align: center;
+      line-height: 40px;
+      background-color: #f9fafc;
+    }
+    .prev{
+      left: 0;
+      top: 0;
+      border-right: 1px solid #ddd;
+    }
+    .next{
+      right: 0;
+      top: 0;
+      border-left: 1px solid #ddd;
+    }
+    &.more>a{
+      display: block;
+    }
+  }
+  .tabs-list{
+    list-style: none;
+    padding: 0;
+    margin:0;
+    transition: margin .5s;
+    li{
+      float: left;
+      color: #333;
+      position: relative;
+      line-height: 40px;
+      cursor: pointer;
+      &:hover,&.active{
+        .fa-close{
+          display: block;
+        }
+      }
+    }
+    .fa-close{
+      display: none;
+      position: absolute;
+      right: 5px;
+      top: 8px;
+      color: #bbb;
+      &:hover{
+        color:#333;
+      }
+    }
+    span{
+      width: 105px;
+      display: block;
+      padding: 0 20px 0 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.fixed .content-header-navtabs{
+  position: fixed;
+  left: 230px;
+  right: 0;
+  top: 50px;
+  z-index: 19;
+}
+.fixed.ajax-template{
+  .content{
+    margin-top:40px;
+  }
+}
+
+.sidebar-collapse .content-header-navtabs{
+  left: 50px;
+}
 
 .navbar-toggle {
   color: #fff;
@@ -219,6 +301,12 @@
 
 // Collapse header
 @media (max-width: @screen-header-collapse) {
+  .content-header-navtabs{
+    display: none;
+  }
+  #content{
+    margin-top:0;
+  }
   .main-header {
     position: relative;
     .logo,

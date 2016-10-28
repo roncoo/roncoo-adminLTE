@@ -428,29 +428,29 @@ function _init() {
         //if this isn't a link, prevent the page from being redirected
         if (checkElement.is('.treeview-menu')) {
           e.preventDefault();
-        }else if($("body").hasClass("ajax-template")){
-          var target = $this.attr("href");
-          $("#loading").show();
-          // if (typeof target === 'string') {
-          //   $("body").animate({
-          //     scrollTop: ($(target).offset().top) + "px"
-          //   }, 500);
-          // }
-          $.ajax({
-            url:target,
-            dataType:"html",
-            success:function(result){
-              // console.log(result)
-              $(".content").html(result);
-              $("#loading").hide();
-            },
-            error:function(err){
-              $("#loading").hide();
-              console.log(err)
-            }
-          })
-          // var htmlobj=$.ajax({url:target,async:false});
-          return false;
+        // }else if($("body").hasClass("ajax-template")){
+        //   var target = $this.attr("href");
+        //   $("#loading").show();
+        //   // if (typeof target === 'string') {
+        //   //   $("body").animate({
+        //   //     scrollTop: ($(target).offset().top) + "px"
+        //   //   }, 500);
+        //   // }
+        //   $.ajax({
+        //     url:target,
+        //     dataType:"html",
+        //     success:function(result){
+        //       // console.log(result)
+        //       $(".content").html(result);
+        //       $("#loading").hide();
+        //     },
+        //     error:function(err){
+        //       $("#loading").hide();
+        //       console.log(err)
+        //     }
+        //   })
+        //   // var htmlobj=$.ajax({url:target,async:false});
+        //   return false;
         }
       });
   };
@@ -784,3 +784,541 @@ function _init() {
     });
   };
 }(jQuery));
+
+/**
+ * AdminLTE Demo Menu
+ * ------------------
+ * You should not use this file in production.
+ * This file is for demo purposes only.
+ */
+(function ($, AdminLTE) {
+
+  "use strict";
+
+  /**
+   * List of all the available skins
+   *
+   * @type Array
+   */
+  var my_skins = [
+    "skin-blue",
+    "skin-black",
+    "skin-red",
+    "skin-yellow",
+    "skin-purple",
+    "skin-green",
+    "skin-blue-light",
+    "skin-black-light",
+    "skin-red-light",
+    "skin-yellow-light",
+    "skin-purple-light",
+    "skin-green-light"
+  ];
+
+  //Create the new tab
+  var tab_pane = $("<div />", {
+    "id": "control-sidebar-theme-demo-options-tab",
+    "class": "tab-pane active"
+  });
+
+  //Create the tab button
+  var tab_button = $("<li />", {"class": "active"})
+      .html("<a href='#control-sidebar-theme-demo-options-tab' data-toggle='tab'>"
+      + "<i class='fa fa-wrench'></i>"
+      + "</a>");
+
+  //Add the tab button to the right sidebar tabs
+  $("[href='#control-sidebar-home-tab']")
+      .parent()
+      .before(tab_button);
+
+  //Create the menu
+  var demo_settings = $("<div />");
+
+  //Layout options
+  demo_settings.append(
+      "<h4 class='control-sidebar-heading'>"
+      + "布局选项"
+      + "</h4>"
+        //Fixed layout
+      // + "<div class='form-group'>"
+      // + "<label class='control-sidebar-subheading'>"
+      // + "<input type='checkbox' data-layout='fixed' class='pull-right'/> "
+      // + "固定布局"
+      // + "</label>"
+      // + "<p>激活固定布局。你不能使用固定和装箱的布局</p>"
+      // + "</div>"
+      //   //Boxed layout
+      // + "<div class='form-group'>"
+      // + "<label class='control-sidebar-subheading'>"
+      // + "<input type='checkbox' data-layout='layout-boxed'class='pull-right'/> "
+      // + "装箱布局"
+      // + "</label>"
+      // + "<p>激活装箱布局</p>"
+      // + "</div>"
+        //Sidebar Toggle
+      + "<div class='form-group'>"
+      + "<label class='control-sidebar-subheading'>"
+      + "<input type='checkbox' data-layout='sidebar-collapse' class='pull-right'/> "
+      + "切换侧边栏"
+      + "</label>"
+      + "<p>左侧边栏是否展开</p>"
+      + "</div>"
+        //Sidebar mini expand on hover toggle
+      // + "<div class='form-group'>"
+      // + "<label class='control-sidebar-subheading'>"
+      // + "<input type='checkbox' data-enable='expandOnHover' class='pull-right'/> "
+      // + "侧边栏自动伸缩"
+      // + "</label>"
+      // + "<p>让侧边栏迷你和展开自动切换</p>"
+      // + "</div>"
+        //Control Sidebar Toggle
+      + "<div class='form-group'>"
+      + "<label class='control-sidebar-subheading'>"
+      + "<input type='checkbox' data-controlsidebar='control-sidebar-open' class='pull-right'/> "
+      + "右侧边栏的滑动切换"
+      + "</label>"
+      + "<p>右侧边栏固定和浮动之间的切换</p>"
+      + "</div>"
+        //Control Sidebar Skin Toggle
+      + "<div class='form-group'>"
+      + "<label class='control-sidebar-subheading'>"
+      + "<input type='checkbox' data-sidebarskin='toggle' class='pull-right'/> "
+      + "切换右侧边栏的皮肤"
+      + "</label>"
+      + "<p>切换右侧边栏的深色皮肤和浅色皮肤</p>"
+      + "</div>"
+  );
+  var skins_list = $("<ul />", {"class": 'list-unstyled clearfix'});
+
+  //Dark sidebar skins
+  var skin_blue =
+      $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          .append("<a href='javascript:void(0);' data-skin='skin-blue' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px; background: #367fa9;'></span><span class='bg-light-blue' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
+          + "</a>"
+          + "<p class='text-center no-margin'>Blue</p>");
+  skins_list.append(skin_blue);
+  var skin_black =
+      $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          .append("<a href='javascript:void(0);' data-skin='skin-black' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
+          + "<div style='box-shadow: 0 0 2px rgba(0,0,0,0.1)' class='clearfix'><span style='display:block; width: 20%; float: left; height: 7px; background: #fefefe;'></span><span style='display:block; width: 80%; float: left; height: 7px; background: #fefefe;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
+          + "</a>"
+          + "<p class='text-center no-margin'>Black</p>");
+  skins_list.append(skin_black);
+  var skin_purple =
+      $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          .append("<a href='javascript:void(0);' data-skin='skin-purple' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-purple-active'></span><span class='bg-purple' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
+          + "</a>"
+          + "<p class='text-center no-margin'>Purple</p>");
+  skins_list.append(skin_purple);
+  var skin_green =
+      $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          .append("<a href='javascript:void(0);' data-skin='skin-green' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-green-active'></span><span class='bg-green' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
+          + "</a>"
+          + "<p class='text-center no-margin'>Green</p>");
+  skins_list.append(skin_green);
+  var skin_red =
+      $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          .append("<a href='javascript:void(0);' data-skin='skin-red' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-red-active'></span><span class='bg-red' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
+          + "</a>"
+          + "<p class='text-center no-margin'>Red</p>");
+  skins_list.append(skin_red);
+  var skin_yellow =
+      $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          .append("<a href='javascript:void(0);' data-skin='skin-yellow' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-yellow-active'></span><span class='bg-yellow' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
+          + "</a>"
+          + "<p class='text-center no-margin'>Yellow</p>");
+  skins_list.append(skin_yellow);
+
+  //Light sidebar skins
+  var skin_blue_light =
+      $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          .append("<a href='javascript:void(0);' data-skin='skin-blue-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px; background: #367fa9;'></span><span class='bg-light-blue' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
+          + "</a>"
+          + "<p class='text-center no-margin' style='font-size: 12px'>Blue Light</p>");
+  skins_list.append(skin_blue_light);
+  var skin_black_light =
+      $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          .append("<a href='javascript:void(0);' data-skin='skin-black-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
+          + "<div style='box-shadow: 0 0 2px rgba(0,0,0,0.1)' class='clearfix'><span style='display:block; width: 20%; float: left; height: 7px; background: #fefefe;'></span><span style='display:block; width: 80%; float: left; height: 7px; background: #fefefe;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
+          + "</a>"
+          + "<p class='text-center no-margin' style='font-size: 12px'>Black Light</p>");
+  skins_list.append(skin_black_light);
+  var skin_purple_light =
+      $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          .append("<a href='javascript:void(0);' data-skin='skin-purple-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-purple-active'></span><span class='bg-purple' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
+          + "</a>"
+          + "<p class='text-center no-margin' style='font-size: 12px'>Purple Light</p>");
+  skins_list.append(skin_purple_light);
+  var skin_green_light =
+      $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          .append("<a href='javascript:void(0);' data-skin='skin-green-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-green-active'></span><span class='bg-green' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
+          + "</a>"
+          + "<p class='text-center no-margin' style='font-size: 12px'>Green Light</p>");
+  skins_list.append(skin_green_light);
+  var skin_red_light =
+      $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          .append("<a href='javascript:void(0);' data-skin='skin-red-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-red-active'></span><span class='bg-red' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
+          + "</a>"
+          + "<p class='text-center no-margin' style='font-size: 12px'>Red Light</p>");
+  skins_list.append(skin_red_light);
+  var skin_yellow_light =
+      $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          .append("<a href='javascript:void(0);' data-skin='skin-yellow-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-yellow-active'></span><span class='bg-yellow' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
+          + "</a>"
+          + "<p class='text-center no-margin' style='font-size: 12px;'>Yellow Light</p>");
+  skins_list.append(skin_yellow_light);
+
+  demo_settings.append("<h4 class='control-sidebar-heading'>皮肤</h4>");
+  demo_settings.append(skins_list);
+
+  tab_pane.append(demo_settings);
+  $("#control-sidebar-home-tab").after(tab_pane);
+
+  setup();
+
+  /**
+   * Toggles layout classes
+   *
+   * @param String cls the layout class to toggle
+   * @returns void
+   */
+  function change_layout(cls) {
+    $("body").toggleClass(cls);
+    AdminLTE.layout.fixSidebar();
+    //Fix the problem with right sidebar and layout boxed
+    if (cls == "layout-boxed")
+      AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
+    if ($('body').hasClass('fixed') && cls == 'fixed') {
+      AdminLTE.pushMenu.expandOnHover();
+      AdminLTE.layout.activate();
+    }
+    AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
+    AdminLTE.controlSidebar._fix($(".control-sidebar"));
+  }
+
+  /**
+   * Replaces the old skin with the new skin
+   * @param String cls the new skin class
+   * @returns Boolean false to prevent link's default action
+   */
+  function change_skin(cls) {
+    $.each(my_skins, function (i) {
+      $("body").removeClass(my_skins[i]);
+    });
+
+    $("body").addClass(cls);
+    store('skin', cls);
+    return false;
+  }
+
+  /**
+   * Store a new settings in the browser
+   *
+   * @param String name Name of the setting
+   * @param String val Value of the setting
+   * @returns void
+   */
+  function store(name, val) {
+    if (typeof (Storage) !== "undefined") {
+      localStorage.setItem(name, val);
+    } else {
+      window.alert('Please use a modern browser to properly view this template!');
+    }
+  }
+
+  /**
+   * Get a prestored setting
+   *
+   * @param String name Name of of the setting
+   * @returns String The value of the setting | null
+   */
+  function get(name) {
+    if (typeof (Storage) !== "undefined") {
+      return localStorage.getItem(name);
+    } else {
+      window.alert('Please use a modern browser to properly view this template!');
+    }
+  }
+
+  /**
+   * Retrieve default settings and apply them to the template
+   *
+   * @returns void
+   */
+  function setup() {
+    var tmp = get('skin');
+    if (tmp && $.inArray(tmp, my_skins))
+      change_skin(tmp);
+
+    //Add the change skin listener
+    $("[data-skin]").on('click', function (e) {
+      if($(this).hasClass('knob'))
+        return;
+      e.preventDefault();
+      change_skin($(this).data('skin'));
+    });
+
+    //Add the layout manager
+    $("[data-layout]").on('click', function () {
+      change_layout($(this).data('layout'));
+    });
+
+    $("[data-controlsidebar]").on('click', function () {
+      change_layout($(this).data('controlsidebar'));
+      var slide = !AdminLTE.options.controlSidebarOptions.slide;
+      AdminLTE.options.controlSidebarOptions.slide = slide;
+      if (!slide)
+        $('.control-sidebar').removeClass('control-sidebar-open');
+    });
+
+    $("[data-sidebarskin='toggle']").on('click', function () {
+      var sidebar = $(".control-sidebar");
+      if (sidebar.hasClass("control-sidebar-dark")) {
+        sidebar.removeClass("control-sidebar-dark")
+        sidebar.addClass("control-sidebar-light")
+      } else {
+        sidebar.removeClass("control-sidebar-light")
+        sidebar.addClass("control-sidebar-dark")
+      }
+    });
+
+    $("[data-enable='expandOnHover']").on('click', function () {
+      $(this).attr('disabled', true);
+      AdminLTE.pushMenu.expandOnHover();
+      if (!$('body').hasClass('sidebar-collapse'))
+        $("[data-layout='sidebar-collapse']").click();
+    });
+
+    // Reset options
+    if ($('body').hasClass('fixed')) {
+      $("[data-layout='fixed']").attr('checked', 'checked');
+    }
+    if ($('body').hasClass('layout-boxed')) {
+      $("[data-layout='layout-boxed']").attr('checked', 'checked');
+    }
+    if ($('body').hasClass('sidebar-collapse')) {
+      $("[data-layout='sidebar-collapse']").attr('checked', 'checked');
+    }
+
+  }
+})(jQuery, $.AdminLTE);
+
+
+/*
+ * 自定义事件
+ * -----------------------
+ */
+(function ($) {
+  // 打开tab页
+  $(".ajax-template").on("click","a[target='navTab']",function(){
+    var that = $(this);
+    var _text = that.text();
+    var _href = that.attr("href");
+    if (!$("#navTabs li[url='"+_href+"']").length) {
+
+        $("#loading").show();
+        $.ajax({
+          url:_href,
+          dataType:"html",
+          success:function(result){
+            $("#loading").hide();
+            // $.each($(result),function(i,item){
+
+            //   if (item.nodeName == "LINK" || item.nodeName == "link") {
+            //     require1(item.href);
+            //   }
+            //   if (item.nodeName == "SCRIPT" || item.nodeName == "script" && !!item.src) {
+            //     require1(item.src);
+            //   }
+            // })
+            $("#navTabs").append('<li url="'+_href+'"><span>'+_text+'</span><a href="javascript:void(0);" class="fa fa-close"></a></li>');
+            $("#content").append('<div class="tabs-panel">'+result+'</div>');
+            showTab($("#navTabs li[url='"+_href+"']"));   
+          },
+          error:function(err){
+            $("#loading").hide();
+            console.log(err)
+          }
+        })
+    }else{
+      showTab($("#navTabs li[url='"+_href+"']"));      
+    }
+
+    if (that.parents(".sidebar-menu").length) {
+      that.parent("li").addClass("active").siblings().removeClass("active");
+    }
+    return false;
+  });
+
+  // 点击tab标签
+  $("#navTabs").on("click","li",function(){
+    showTab($(this));
+  });
+  // 关闭tab标签
+  $("#navTabs").on("click",".fa-close",function(){
+    var index = $(this).parents("li").index();
+    showTab($(this).parents("li").prev());
+    $("#content .tabs-panel").eq(index).remove();
+    $(this).parents("li").remove();
+  });
+  // tab标签上一页、下一页
+  $("#navTabs").nextAll("a").on("click",function(){
+    var ml = parseInt($("#navTabs").css("marginLeft"));
+    var itemL = $("#navTabs>li").length;
+    var itemW = $("#navTabs>li").eq(0).width();
+    var boxW = $("#navTabs").parent().width();
+    if ($(this).hasClass("next")) {
+      if (itemL*itemW+ml-boxW>0) {
+        ml -= itemW*2;
+      }
+    }else{
+      if (ml>itemW*2) {
+        ml += itemW*2;
+      }else{
+        ml = 0;
+      }
+    }
+    $("#navTabs").css("marginLeft",ml);
+  });
+  // show tab页内容
+  function showTab(that){
+    var itemL = $("#navTabs>li").length;
+    var itemW = $("#navTabs>li").eq(0).width();
+    var boxW = $("#navTabs").parent().width();
+    that.addClass("active").siblings().removeClass("active");    $("#content>.tabs-panel").eq(that.index()).show().siblings().hide();
+    if (itemL * itemW > boxW-itemW) {
+      $("#navTabs").width(itemL*itemW+itemW).parent().addClass("more");
+      var pl = that.prevAll().length;
+      if (pl * itemW > boxW-itemW) {
+        $("#navTabs").css("marginLeft",boxW-pl * itemW-itemW-30);
+      }else{
+        $("#navTabs").css("marginLeft",0);
+      }
+    }else{
+      $("#navTabs").width("100%").parent().removeClass("more");
+    }
+  }
+
+// 打开对话框
+$(document).on("click","a[target='modal']",function(){
+  var that = $(this);
+  var href = that.attr("href");
+  var method = that.attr("method") == "post"?"post":"get";
+  var modal = that.attr("modal")
+  $("#loading").show();
+  $.ajax({
+    url:href,
+    type:method,
+    dataType:"html",
+    success:function(result){
+      $("#loading").hide();
+      $("#lgModal").find(".modal-dialog").attr("class","modal-dialog modal-"+modal);
+      $("#lgModal").find(".modal-body").html(result).end().modal("show");
+    },
+    error:function(){
+      $("#loading").hide();
+      console.error("加载失败");
+    }
+  })
+  return false;
+})
+
+// 确认对话框
+$(document).on("click","a[target='ajaxTodo']",function(){
+  var that = $(this);
+  var href = that.attr("href");
+  var title = that.attr("data-body");
+    $("#smModal").attr("action",href).find(".modal-body").html(title).end().modal("show");
+
+  return false;
+});
+$("#smModal").on("click",".modal-footer>.btn-primary",function(){
+  var action = $("#smModal").attr("action");
+  if (!action) {
+    $("#smModal").modal("hide");
+    return false;
+  }
+
+  $.get(action,function(){
+    $("#smModal").modal("hide");
+    alertMsg("操作成功","success");
+  })
+
+})
+
+}(jQuery));
+
+var alertsetTime;
+function alertMsg(text,type){
+  if (!$("#alertMsgBox").length) {
+  var html =  '<div class="box box-danger box-solid" id="alertMsgBox">'
+              +'  <div class="box-header with-border">'
+              +'    <h3 class="box-title">提示</h3>'
+              +'    <div class="box-tools pull-right">'
+              +'      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>'
+              +'    </div>'
+              +'  </div>'
+              +'  <div class="box-body"></div>'
+              +'</div>'
+    $("body").append(html)
+    }
+    if (!text) text="提示内容不可为空";
+    if (!type) type?type:"default";
+    clearTimeout(alertsetTime);
+    $("#alertMsgBox").attr("class","box box-"+type+" box-solid").stop().slideDown("slow").find(".box-body").html(text);
+  alertsetTime = setTimeout(function(){
+    $("#alertMsgBox").slideUp("slow");
+  },4000)
+}
+
+  // 动态提示
+function modal1(){
+  if($("#modalMain").length == 0){
+    var html =  '<div class="modal fade" id="modalMain">'
+                +'  <div class="modal-dialog modal-sm">'
+                +'    <div class="modal-content">'
+                +'      <div class="modal-header">'
+                +'        <button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+                +'          <span aria-hidden="true">×</span></button>'
+                +'        <h4 class="modal-title">提示</h4>'
+                +'      </div>'
+                +'      <div class="modal-body">'
+                +'        <p>提示什么？</p>'
+                +'     </div>'
+                +'      <div class="modal-footer">'
+                +'        <button type="button" aria-label="Close" class="btn btn-default" data-dismiss="modal">close</button>'
+                +'        <button type="button" class="btn btn-primary" aria-label="primary">确认</button>'
+                +'      </div>'
+                +'    </div>'
+                +'    <!-- /.modal-content -->'
+                +'  </div>'
+                +'  <!-- /.modal-dialog -->'
+                +'</div>'
+    $("body").append(html)
+  }
+
+}
+

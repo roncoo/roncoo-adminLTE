@@ -44,7 +44,7 @@
               </div>
             </div>
             <div class="box-body">
-              <div id="line-chart" style="height: 300px;"></div>
+              <div id="flot-line-chart" style="height: 300px;"></div>
             </div>
             <!-- /.box-body-->
           </div>
@@ -117,14 +117,6 @@
         <!-- /.col -->
       </div>
 
-<!-- FLOT CHARTS -->
-<script src="plugins/flot/jquery.flot.min.js"></script>
-<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
-<script src="plugins/flot/jquery.flot.resize.min.js"></script>
-<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
-<script src="plugins/flot/jquery.flot.pie.min.js"></script>
-<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
-<script src="plugins/flot/jquery.flot.categories.min.js"></script>
 <!-- Page script -->
 <script>
   $(function () {
@@ -239,7 +231,7 @@
       data: cos,
       color: "#00c0ef"
     };
-    $.plot("#line-chart", [line_data1, line_data2], {
+    $.plot("#flot-line-chart", [line_data1, line_data2], {
       grid: {
         hoverable: true,
         borderColor: "#f3f3f3",
@@ -267,22 +259,22 @@
       }
     });
     //Initialize tooltip on hover
-    $('<div class="tooltip-inner" id="line-chart-tooltip"></div>').css({
+    $('<div class="tooltip-inner" id="flot-line-chart-tooltip"></div>').css({
       position: "absolute",
       display: "none",
       opacity: 0.8
     }).appendTo("body");
-    $("#line-chart").bind("plothover", function (event, pos, item) {
+    $("#flot-line-chart").bind("plothover", function (event, pos, item) {
 
       if (item) {
         var x = item.datapoint[0].toFixed(2),
             y = item.datapoint[1].toFixed(2);
 
-        $("#line-chart-tooltip").html(item.series.label + " of " + x + " = " + y)
+        $("#flot-line-chart-tooltip").html(item.series.label + " of " + x + " = " + y)
             .css({top: item.pageY + 5, left: item.pageX + 5})
             .fadeIn(200);
       } else {
-        $("#line-chart-tooltip").hide();
+        $("#flot-line-chart-tooltip").hide();
       }
 
     });

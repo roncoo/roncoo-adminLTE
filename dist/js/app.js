@@ -428,29 +428,29 @@ function _init() {
         //if this isn't a link, prevent the page from being redirected
         if (checkElement.is('.treeview-menu')) {
           e.preventDefault();
-        }else if($("body").hasClass("ajax-template")){
-          var target = $this.attr("href");
-          $("#loading").show();
-          // if (typeof target === 'string') {
-          //   $("body").animate({
-          //     scrollTop: ($(target).offset().top) + "px"
-          //   }, 500);
-          // }
-          $.ajax({
-            url:target,
-            dataType:"html",
-            success:function(result){
-              // console.log(result)
-              $(".content").html(result);
-              $("#loading").hide();
-            },
-            error:function(err){
-              $("#loading").hide();
-              console.log(err)
-            }
-          })
-          // var htmlobj=$.ajax({url:target,async:false});
-          return false;
+        // }else if($("body").hasClass("ajax-template")){
+        //   var target = $this.attr("href");
+        //   $("#loading").show();
+        //   // if (typeof target === 'string') {
+        //   //   $("body").animate({
+        //   //     scrollTop: ($(target).offset().top) + "px"
+        //   //   }, 500);
+        //   // }
+        //   $.ajax({
+        //     url:target,
+        //     dataType:"html",
+        //     success:function(result){
+        //       // console.log(result)
+        //       $(".content").html(result);
+        //       $("#loading").hide();
+        //     },
+        //     error:function(err){
+        //       $("#loading").hide();
+        //       console.log(err)
+        //     }
+        //   })
+        //   // var htmlobj=$.ajax({url:target,async:false});
+        //   return false;
         }
       });
   };
@@ -784,3 +784,164 @@ function _init() {
     });
   };
 }(jQuery));
+
+/*
+ * 自定义事件
+ * -----------------------
+ */
+(function ($) {
+  // 打开tab页
+  $(".ajax-template").on("click","a[target='navTab']",function(){
+    var that = $(this);
+    var _text = that.text();
+    var _href = that.attr("href");
+    if (!$("#navTabs li[url='"+_href+"']").length) {
+
+        $("#loading").show();
+        $.ajax({
+          url:_href,
+          dataType:"html",
+          success:function(result){
+            $("#loading").hide();
+            // $.each($(result),function(i,item){
+
+            //   if (item.nodeName == "LINK" || item.nodeName == "link") {
+            //     require1(item.href);
+            //   }
+            //   if (item.nodeName == "SCRIPT" || item.nodeName == "script" && !!item.src) {
+            //     require1(item.src);
+            //   }
+            // })
+            $("#navTabs").append('<li url="'+_href+'"><span>'+_text+'</span><a href="javascript:void(0);" class="fa fa-close"></a></li>');
+            $("#content").append('<div class="tabs-panel">'+result+'</div>');
+            showTab($("#navTabs li[url='"+_href+"']"));   
+          },
+          error:function(err){
+            $("#loading").hide();
+            console.log(err)
+          }
+        })
+    }else{
+      showTab($("#navTabs li[url='"+_href+"']"));      
+    }
+
+    if (that.parents(".sidebar-menu").length) {
+      that.parent("li").addClass("active").siblings().removeClass("active");
+    }
+    return false;
+  });
+
+  // 点击tab标签
+  $("#navTabs").on("click","li",function(){
+    showTab($(this));
+  });
+  // 关闭tab标签
+  $("#navTabs").on("click",".fa-close",function(){
+    var index = $(this).parents("li").index();
+    showTab($(this).parents("li").prev());
+    $("#content .tabs-panel").eq(index).remove();
+    $(this).parents("li").remove();
+  });
+  // tab标签上一页、下一页
+  $("#navTabs").nextAll("a").on("click",function(){
+    var ml = parseInt($("#navTabs").css("marginLeft"));
+    var itemL = $("#navTabs>li").length;
+    var itemW = $("#navTabs>li").eq(0).width();
+    var boxW = $("#navTabs").parent().width();
+    if ($(this).hasClass("next")) {
+      if (itemL*itemW+ml-boxW>0) {
+        ml -= itemW*2;
+      }
+    }else{
+      if (ml>itemW*2) {
+        ml += itemW*2;
+      }else{
+        ml = 0;
+      }
+    }
+    $("#navTabs").css("marginLeft",ml);
+  });
+  // show tab页内容
+  function showTab(that){
+    var itemL = $("#navTabs>li").length;
+    var itemW = $("#navTabs>li").eq(0).width();
+    var boxW = $("#navTabs").parent().width();
+    that.addClass("active").siblings().removeClass("active");    $("#content>.tabs-panel").eq(that.index()).show().siblings().hide();
+    if (itemL * itemW > boxW) {
+      $("#navTabs").width(itemL*itemW).parent().addClass("more");
+      var pl = that.prevAll().length;
+      if (pl * itemW > boxW-itemW) {
+        $("#navTabs").css("marginLeft",boxW-pl * itemW-itemW);
+      }else{
+        $("#navTabs").css("marginLeft",0);
+      }
+    }else{
+      $("#navTabs").width("100%").parent().removeClass("more");
+    }
+  }
+
+// 打开对话框
+$(document).on("click","a[target='modal']",function(){
+  var that = $(this);
+  var href = that.attr("href");
+  var method = that.attr("method") == "post"?"post":"get";
+  $("#loading").show();
+  $.ajax({
+    url:href,
+    type:method,
+    dataType:"html",
+    success:function(result){
+      $("#loading").hide();
+      $("#lgModal").find(".modal-body").html(result).end().modal("show");
+    },
+    error:function(){
+      $("#loading").hide();
+      console.error("加载失败");
+    }
+  })
+  return false;
+})
+
+// 确认对话框
+$(document).on("click","a[target='ajaxTodo']",function(){
+  var that = $(this);
+  var href = that.attr("href");
+  var title = that.attr("data-body");
+  var method = that.attr("method") == "post"?"post":"get";
+  console.log("删除吧")
+      $("#smModal").attr("action",href).find(".modal-body").html(title).end().modal("show");
+
+  return false;
+})
+
+}(jQuery));
+
+  // 动态提示
+function modal1(){
+  if($("#modalMain").length == 0){
+    var html =  '<div class="modal fade" id="modalMain">'
+                +'  <div class="modal-dialog modal-sm">'
+                +'    <div class="modal-content">'
+                +'      <div class="modal-header">'
+                +'        <button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+                +'          <span aria-hidden="true">×</span></button>'
+                +'        <h4 class="modal-title">提示</h4>'
+                +'      </div>'
+                +'      <div class="modal-body">'
+                +'        <p>提示什么？</p>'
+                +'     </div>'
+                +'      <div class="modal-footer">'
+                +'        <button type="button" aria-label="Close" class="btn btn-default" data-dismiss="modal">close</button>'
+                +'        <button type="button" class="btn btn-primary" aria-label="primary">确认</button>'
+                +'      </div>'
+                +'    </div>'
+                +'    <!-- /.modal-content -->'
+                +'  </div>'
+                +'  <!-- /.modal-dialog -->'
+                +'</div>'
+    $("body").append(html)
+  }
+
+  $("#modalMain").addClass("in").show();
+}
+
