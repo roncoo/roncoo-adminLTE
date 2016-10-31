@@ -44,8 +44,8 @@
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-              <li><a href="http://almsaeedstudio.com">龙果技术团队</a></li>
-              <li><a href="http://almsaeedstudio.com/premium">高级模板</a></li>
+              <li><a href="http://roncoo.com">龙果技术团队</a></li>
+              <li><a href="http://almsaeedstudio.com/premium">adminLTE</a></li>
             </ul>
           </div>
         </nav>
@@ -76,6 +76,7 @@
               </ul>
             </li>
             <li><a href="#plugins"><i class="fa fa-circle-o"></i> 插件</a></li>
+            <li><a href="#upload"><i class="fa fa-circle-o"></i> 更新日志</a></li>
             <li><a href="#browsers"><i class="fa fa-circle-o"></i>浏览器支持</a></li>
             <li><a href="#upgrade"><i class="fa fa-circle-o"></i>升级指南</a></li>
             <li><a href="#implementations"><i class="fa fa-circle-o"></i> 实现</a></li>
@@ -112,6 +113,9 @@
     AdminLTE 是基于模块化的设计，这允许它可以很容易地定制和构建， 这份文件将指导你通过
 安装模板，并探索与模板绑定的各种组件。
   </p>
+  <p>
+    <b>RonCoo AdminLTE</b> --是一个完全响应式的免费开源后台管理模板。基于 AdminLTE 框架（后续会随着版本更新而更新）;使用jQuery 2.2.3版本，并引入很多优秀的第三方jQuery插件，开发者也可以改用自己熟悉的第三方插件,易于使用，并高度可定制，适合许多屏幕分辨率从小型移动设备到大型台式机，这是国内的开源模板未支持的。
+  </p>
 </section><!-- /#introduction -->
 
 
@@ -120,8 +124,9 @@
 <section id="download">
   <h2 class="page-header"><a href="#download">Download</a></h2>
   <p class="lead">
-    AdminLTE 官方提供两种不同的版本下载，每个人不同的技能水平和使用情况，也可以下载龙果改良版。
+    RonCoo AdminLTE 官方提供两种不同的版本下载，每个人不同的技能水平和使用情况。
   </p>
+  <p>在线预览：<a href="http://demo.adminlte.roncoo.com">demo.adminlte.roncoo.com</a> </p>
   <div class="row">
     <div class="col-sm-6">
       <div class="box box-primary">
@@ -130,7 +135,7 @@
           <span class="label label-primary pull-right"><i class="fa fa-html5"></i></span>
         </div><!-- /.box-header -->
         <div class="box-body">
-          <p>编译并准备在生产中使用。如果你不想自定义adminLTE LESS 文件,下载这个版本</p>
+          <p>编译并准备在生产中使用。全部引用压缩编译后的js和css等静态资源文件，去除多余的源文件，如果你不想自定义RonCoo adminLTE或二次开发 ,下载这个版本</p>
           <a href="http://almsaeedstudio.com/download/AdminLTE-dist" class="btn btn-primary"><i class="fa fa-download"></i> Download</a>
         </div><!-- /.box-body -->
       </div><!-- /.box -->
@@ -142,7 +147,7 @@
           <span class="label label-danger pull-right"><i class="fa fa-database"></i></span>
         </div><!-- /.box-header -->
         <div class="box-body">
-          <p>所有的文件包括编写CSS。如果您计划自定义模板的话，就下载这个版本。 <b>需要引入LESS编译器。</b></p>
+          <p>包含整套模板所有的文件包括js源文件和LESS源文件等。如果您计划自定义模板或做二次开发，就下载这个版本。 <b>需要引入LESS编译器。</b></p>
           <a href="http://almsaeedstudio.com/download/AdminLTE" class="btn btn-danger"><i class="fa fa-download"></i> Download</a>
         </div><!-- /.box-body -->
       </div><!-- /.box -->
@@ -171,22 +176,7 @@ AdminLTE/
 │       ├── mixins.less
 └── plugins/
     ├── 所有的自定义插件的CSS和JS文件</code></pre>
-  <pre class="hierarchy bring-up"><code class="language-bash" data-lang="bash"> 官方版本文件层次结构的源代码包
-
-AdminLTE/
-├── dist/
-│   ├── CSS/
-│   ├── JS
-│   ├── img
-├── build/
-│   ├── less/
-│   │   ├── AdminLTE's Less files
-│   └── Bootstrap-less/ (Only for reference. No modifications have been made)
-│       ├── mixins/
-│       ├── variables.less
-│       ├── mixins.less
-└── plugins/
-    ├── All the customized plugins CSS and JS files</code></pre>
+ 
 </section>
 
 
@@ -2040,6 +2030,40 @@ AdminLTE/
       </ul>
     </div><!-- /.col -->
   </div><!-- /.row -->
+</section>
+
+
+<!-- ============================================================= -->
+
+<section id="upload">
+  <h2 class="page-header"><a href="#upload">更新日志</a></h2>
+  <p class="lead">下面是所有龙果团队的更新日志</p>
+  <h3>2016-10-28</h3>
+  <ul>
+    <li>ajax模式中所有js和css统一在index.html引入，不再分开页面引入。</li>
+    <li>ajax模式中添加tab页功能，加载页面可以加载多个，通过头部tab切换，该功能只在ajax模式中存在</li>
+    <li>在实例中添加了一个table的实例，并做好了服务端的分页，table数据的处理等</li>
+    <li>a标签通过添加属性<b>target=navTab</b>添加新开标签页功能，通过异步请求href连接页面，仅ajax模式可使用</li>
+    <li>a标签通过添加属性<b>target="modal"</b>添加弹出层页面功能，并通过<b>modal=lg \modal=ms \ modal=""</b> 属性约定窗口大小 不设置modal属性是使用默认的大小适中的弹出层</li>
+    <li>新增提示窗js功能，alertMsg（"提示内容","提示类型——default--success——warning——danger 默认为default"）</li>
+    <li>优化右侧栏功能</li>
+    <li></li>
+  </ul>
+  <h3>2016-10-17</h3>
+  <ul>
+    <li>/Gruntfile.js代码编译打包优化，执行 grunt 默认对less编译，对js复制处理，如果需要对js做代码质量检测，请执行grunt lint</li>
+    <li>根据用户反馈，添加三个新的登录注册页面实例，可以在预览地址中左边导航的实例中预览 /pages/examples/login1.html /pages/examples/login2.html /pages/examples/login3.html</li>
+  </ul>
+  <h3>2016-09-30</h3>
+  <p>添加在线预览地址<a href="http://demo.adminlte.roncoo.com/">demo.adminlte.roncoo.com</a></p>
+  <h3>2016-09-26</h3>
+  <ul>
+    <li>根据我们团队的需求，增加了Ajax的布局模式。只需要在body标签里面添加.ajax-template .fixed类即可实现。</li>
+    <li>增加include文件夹，用于存放ajax加载的内页文件。</li>
+    <li>根目录的build文件夹增加了fonts、img、js文件夹，通过grunt编译转移到dist/目录，更利于二次开发时源码目录与编译目录区分。</li>
+    <li>Gruntfile.js 添加了grunt-contrib-connect模块，装好node编译环境后，grunt即可发起服务，在浏览器输入localhost:8000即可访问，更方便二次开发。</li>
+    <li>把index.html的外链的js、css和字体文件全部下载到本地的build目录下</li>
+  </ul>
 </section>
 
 
