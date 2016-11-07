@@ -15,6 +15,9 @@
 
 
 ###更新日志
+####2016-11-7
+修改目录，把跟目录下的bootstrap移到plugins
+增加一个使用版，使用版没有开发源文件，只剩下min后的js和CSS
 ####2016-10-28
 1. ajax模式中所有js和css统一在index.html引入，不再分开页面引入。
 2. ajax模式中添加tab页功能，加载页面可以加载多个，通过头部tab切换，该功能只在ajax模式中存在.
@@ -23,6 +26,7 @@
 5. a标签通过添加属性target="modal"添加弹出层页面功能，并通过modal=lg \modal=ms \ modal="" 属性约定窗口大小 不设置modal属性是使用默认的大小适中的弹出层。
 6. 新增提示窗js功能，alertMsg（"提示内容"，"提示类型——default、success、warning、danger 默认为default"）。
 7. 优化右侧栏功能。
+
 ####2016-10-17
 1. 根据用户反馈，添加三个新的登录注册页面实例，可以在预览地址中左边导航的实例中预览
 `/pages/examples/login1.html`
