@@ -20,6 +20,22 @@ body {
   background: none;
 }
 
+.fixed{
+  overflow: hidden;
+  .content-wrapper{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    overflow: hidden;
+  }
+  .content{
+    overflow: auto;
+    width: 100%;
+  }
+}
+
 /* Layout */
 .wrapper {
   .clearfix();

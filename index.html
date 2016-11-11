@@ -539,6 +539,14 @@ ifm.height = subWeb.body.scrollHeight;
            <a href="javascript:void(0);" class="prev fa fa-step-backward"></a>
            <a href="javascript:void(0);" class="next fa fa-step-forward"></a> 
         </div>
+        <div class="context-menu" id="contextMenu">
+          <ul class="ct-nav">
+            <li rel="reload">刷新标签页</li>
+            <li rel="closeCurrent">关闭标签页</li>
+            <li rel="closeOther">关闭其他标签页</li>
+            <li rel="closeAll">关闭全部标签页</li>
+          </ul>
+        </div>
     </section>
     <!-- Main content -->
     <section class="content" id="content">
@@ -813,7 +821,7 @@ ifm.height = subWeb.body.scrollHeight;
 <!-- Slimscroll -->
 <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/app.min.js"></script>
+<script src="dist/js/app.js"></script>
 <!-- 以上JS为页面必须 -->
    
 <!-- jQuery UI 1.11.4 -->

@@ -202,17 +202,9 @@
   .content-header-navtabs{
     .tabs-page{
       background: darken(@sidebar-dark-bg, 5%);
-    }
-     li{
-      color: @sidebar-dark-color;
-      border-right: 1px solid darken(@sidebar-dark-bg, 7%);
-      &.active{
-        background-color: @sidebar-dark-bg;
-        color: #fff;
-      }
-      &:hover{
-        color: #fff;
-        background-color: darken(@sidebar-dark-bg, 3%);
+       li{
+        color: @sidebar-dark-color;
+        border-right: 1px solid darken(@sidebar-dark-bg, 7%);
       }
     }
   }
@@ -326,19 +318,20 @@
   .content-header-navtabs{
     .tabs-page{
       background: @sidebar-light-bg;
-    }
-     li{
-      color: @sidebar-light-color;
-      border-right: 1px solid darken(@sidebar-light-bg, 7%);
-      &.active{
-        background-color: darken(@sidebar-light-bg, 5%);
-        color: #111;
+       li{
+        color: @sidebar-light-color;
+        border-right: 1px solid darken(@sidebar-light-bg, 7%);
+        &.active{
+          background-color: darken(@sidebar-light-bg, 5%);
+          color: #111;
+        }
+        &:hover{
+          color: #111;
+          background-color: darken(@sidebar-light-bg, 3%);
+        }
       }
-      &:hover{
-        color: #111;
-        background-color: darken(@sidebar-light-bg, 3%);
-      }
     }
+
   }
 
   @media (min-width: @screen-sm-min) {

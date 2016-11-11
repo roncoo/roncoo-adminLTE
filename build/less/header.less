@@ -254,6 +254,29 @@
       text-overflow: ellipsis;
     }
   }
+  .context-menu{
+    display: none;
+    position: absolute;
+    top: 20px;
+    background-color: #fff;
+    border: 1px solid #aaa;
+    box-shadow: 1px 1px 3px 1px rgba(17, 17, 17, 0.62);
+    .ct-nav{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li{
+        width: 120px;
+        padding:5px 8px;
+        color: #333;
+        font-size: 12px;
+        cursor: context-menu;
+        &:hover{
+          background-color:#e1e1e1;
+        }
+      }
+    }
+  }
 }
 
 .fixed .content-header-navtabs{

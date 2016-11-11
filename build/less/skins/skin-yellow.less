@@ -51,4 +51,18 @@
 
   //Create the sidebar skin
   .skin-dark-sidebar(@yellow);
+
+  .content-header-navtabs{
+    .tabs-page{
+       li{
+        &:hover{
+          background-color: darken(@yellow, 20%);
+        }
+        &.active{
+          background-color: darken(@yellow, 10%);
+          color: #fff;
+        }
+      }
+    }
+  }
 }
