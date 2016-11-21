@@ -108,7 +108,7 @@
             "targets": -1,
             "data": null,
             "render": function(data){
-				return '<a class="btn btn-primary" target="modal" modal="lg" href="include/index.html">查看</a> &nbsp;<a class="btn btn-default" data-body="确认要删除吗？" target="ajaxTodo" href="include/index.html?uid=123">删除</a>'
+				return '<a class="btn btn-primary" target="modal" modal="lg" href="include/index.html">查看</a> &nbsp;<a class="btn btn-default" data-body="确认要删除吗？" callback="cb(\''+data.name+'\')" target="ajaxTodo" href="include/index.html?uid=123">删除</a>'
 			}
         } ]
     } );
@@ -116,6 +116,11 @@
 $("#submitExample4").on("click",function(){
 	reloadTable(example4);
 })
+
+cb = function(name){
+  // console.log(name)
+  alertMsg("删除"+name+"成功!","success");
+}
 
 //当你需要多条件查询，你可以调用此方法，动态修改参数传给服务器
 function reloadTable(oTable) {

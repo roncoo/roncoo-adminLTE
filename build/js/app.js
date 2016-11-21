@@ -1310,7 +1310,8 @@ $(document).on("click","a[target='ajaxTodo']",function(){
   var that = $(this);
   var href = that.attr("href");
   var title = that.attr("data-body");
-    $("#smModal").attr("action",href).find(".modal-body").html(title).end().modal("show");
+  var cb = that.attr("callback");
+    $("#smModal").attr("action",href).attr("callback",cb).find(".modal-body").html(title).end().modal("show");
 
   return false;
 });
@@ -1320,6 +1321,7 @@ $(document).on("click",function(){
 });
 $("#smModal").on("click",".modal-footer>.btn-primary",function(){
   var action = $("#smModal").attr("action");
+  var clcb = $("#smModal").attr("callback");
   if (!action) {
     $("#smModal").modal("hide");
     return false;
@@ -1327,7 +1329,12 @@ $("#smModal").on("click",".modal-footer>.btn-primary",function(){
 
   $.get(action,function(){
     $("#smModal").modal("hide");
-    alertMsg("操作成功","success");
+    if (!!clcb) {
+      // console.log(clcb);
+      eval(clcb);
+    }else{
+      alertMsg("操作成功","success");
+    }
   })
 
 })
