@@ -149,15 +149,15 @@
 .skin-red-light .content-header-navtabs .tabs-page {
   background: #f9fafc;
 }
-.skin-red-light .content-header-navtabs li {
+.skin-red-light .content-header-navtabs .tabs-page li {
   color: #444444;
   border-right: 1px solid #e1e6f0;
 }
-.skin-red-light .content-header-navtabs li.active {
+.skin-red-light .content-header-navtabs .tabs-page li.active {
   background-color: #e8ecf4;
   color: #111;
 }
-.skin-red-light .content-header-navtabs li:hover {
+.skin-red-light .content-header-navtabs .tabs-page li:hover {
   color: #111;
   background-color: #eff1f7;
 }

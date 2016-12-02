@@ -12,9 +12,13 @@
 **RonCoo AdminLTE** --是一个完全响应式的免费开源后台管理模板。基于 **[AdminLTE](https://github.com/almasaeed2010/AdminLTE)** 框架（后续会随着版本更新而更新）;使用jQuery 2.2.3版本，并引入很多优秀的第三方jQuery插件，开发者也可以改用自己熟悉的第三方插件,易于使用，并高度可定制，适合许多屏幕分辨率从小型移动设备到大型台式机，这是国内的开源模板未支持的。
 
 #####在线预览：[demo.adminlte.roncoo.com](http://demo.adminlte.roncoo.com/)
-
+##### SSM整合在线预览：[demo.adminlte.roncoo.com/roncoo-adminlte-springmvc](http://demo.adminlte.roncoo.com/roncoo-adminlte-springmvc/)
 
 ###更新日志
+####2016-11-11
+1. tab导航右键菜单
+2. 优化滚动条
+3. 优化app.js
 ####2016-11-7
 修改目录，把跟目录下的bootstrap移到plugins
 增加一个使用版，使用版没有开发源文件，只剩下min后的js和CSS

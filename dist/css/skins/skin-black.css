@@ -152,17 +152,9 @@
 .skin-black .content-header-navtabs .tabs-page {
   background: #181f23;
 }
-.skin-black .content-header-navtabs li {
+.skin-black .content-header-navtabs .tabs-page li {
   color: #b8c7ce;
   border-right: 1px solid #141a1d;
-}
-.skin-black .content-header-navtabs li.active {
-  background-color: #222d32;
-  color: #fff;
-}
-.skin-black .content-header-navtabs li:hover {
-  color: #fff;
-  background-color: #1c2529;
 }
 .skin-black .pace .pace-progress {
   background: #222;
@@ -170,4 +162,11 @@
 .skin-black .pace .pace-activity {
   border-top-color: #222;
   border-left-color: #222;
+}
+.skin-black .content-header-navtabs .tabs-page li:hover {
+  background-color: #374850;
+}
+.skin-black .content-header-navtabs .tabs-page li.active {
+  background-color: #f1f1f1;
+  color: #111;
 }
