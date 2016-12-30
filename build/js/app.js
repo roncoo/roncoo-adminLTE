@@ -1239,6 +1239,8 @@ function _init() {
 
       $("#navTabs>li").eq(0).addClass("active").nextAll().remove();
       $("#content>.tabs-panel").eq(0).show().nextAll().remove();
+      showTab($("#navTabs>li").eq(0));
+      $("#navTabs").css("marginLeft",0);
 
     }
     $("#contextMenu").hide();
@@ -1267,7 +1269,8 @@ function _init() {
     var itemL = $("#navTabs>li").length;
     var itemW = $("#navTabs>li").eq(0).width();
     var boxW = $("#navTabs").parent().width();
-    that.addClass("active").siblings().removeClass("active");    $("#content>.tabs-panel").eq(that.index()).show().siblings().hide();
+    that.addClass("active").siblings().removeClass("active");
+    $("#content>.tabs-panel").eq(that.index()).show().siblings().hide();
     if (itemL * itemW > boxW-itemW) {
       $("#navTabs").width(itemL*itemW+itemW).parent().addClass("more");
       var pl = that.prevAll().length;
@@ -1279,6 +1282,9 @@ function _init() {
     }else{
       $("#navTabs").width("100%").parent().removeClass("more");
     }
+
+    buildPagination($("#content>.tabs-panel").eq(that.index()).find(".diy_table_foot .pagination"));
+    ajaxsearch($("#content>.tabs-panel").eq(that.index()).find("form[data-toggle='ajaxsearch']"))
   }
 
 // 打开对话框
@@ -1362,6 +1368,102 @@ function alertMsg(text,type){
   alertsetTime = setTimeout(function(){
     $("#alertMsgBox").slideUp("slow");
   },4000)
+}
+
+// 生成分页组件
+function buildPagination(obj){
+  if(obj.length == 0) return false;
+  var total = parseInt(obj.attr("data-total")),
+      page_size = parseInt(obj.attr("data-page-size")),
+      page_current = parseInt(obj.attr("data-page-current"));
+  var page_total =  Math.ceil(total/page_size); 
+  // 输入框
+  var input = '<div class="input-group pull-right page_go">'
+              +'  <input type="text" class="form-control" value="'+page_current+'">'
+              +'      <span class="input-group-btn">'
+              +'        <button type="button" class="btn btn-info btn-flat">Go!</button>'
+              +'      </span>'
+              +'</div>';
+  // 生成分页
+  var pageList = ""
+    pageList += '<ul class="pagination pagination-sm no-margin pull-right">';
+  if (page_total > 8) {
+    if (page_current < 4) {
+       for (var i = 1; i <= 8; i++) {
+        pageList += '<li class="'+( i == page_current ? "active":"" )+'"><a href="#" data-dt-idx="'+i+'">'+i+'</a></li>';
+      }
+      pageList += '<li><a class="bg-gray disabled" href="javascript:">...</a></li><li><a href="#" data-dt-idx="'+page_total+'">'+page_total+'</a></li>';
+    }else if(page_total-page_current < 4){
+      pageList += '<li><a href="#" data-dt-idx="'+1+'">'+1+'</a></li><li><a class="bg-gray disabled" href="javascript:">...</a></li>';
+       for (var i = page_total-7; i <= page_total; i++) {
+        pageList += '<li class="'+( i == page_current ? "active":"" )+'"><a href="#" data-dt-idx="'+i+'">'+i+'</a></li>';
+      }
+    }else{
+      pageList += '<li><a href="#" data-dt-idx="'+1+'">'+1+'</a></li><li><a class="bg-gray disabled" href="javascript:">...</a></li>';
+       for (var i = page_current -3 ; i <= page_current +3; i++) {
+        pageList += '<li class="'+( i == page_current ? "active":"" )+'"><a href="#" data-dt-idx="'+i+'">'+i+'</a></li>';
+      }
+      pageList += '<li><a class="bg-gray disabled" href="javascript:">...</a></li><li><a href="#" data-dt-idx="'+page_total+'">'+page_total+'</a></li>';
+    }
+
+  }else{
+    for (var i = 1; i <= page_total; i++) {
+      pageList += '<li class="'+( i == page_current ? "active":"" )+'"><a href="#" data-dt-idx="'+i+'">'+i+'</a></li>';
+    }
+  }
+  pageList += '</ul>';
+
+  obj.html(input + pageList);
+  // 点击分页
+  obj.on("click","a",function(){
+    var that = $(this);
+    if (!!that.attr("data-dt-idx")) {
+      var form = obj.parents(".tabs-panel").find("form[data-toggle='ajaxsearch']");
+      form.find("input[name='pageSize']").val(that.attr("data-dt-idx"));
+      form.submit();
+    }
+  })
+  // 点击显示数量
+  obj.parents(".tabs-panel").find(".select_pagesize .dropdown-menu a").on("click",function(){
+    var that = $(this);
+    if (!!that.text()) {
+      var form = obj.parents(".tabs-panel").find("form[data-toggle='ajaxsearch']");
+      form.find("input[name='pageCurrent']").val(that.text());
+      form.submit();
+    }
+  })
+
+}
+
+// 提交表单
+function ajaxsearch(thatForm){
+  if (thatForm.length == 0) return false;
+  thatForm.submit(function(){
+     var serialize = thatForm.serialize();
+      var type = thatForm.attr("method")?thatForm.attr("method"):"get";
+      var action = thatForm.attr("action")
+      // console.log(serialize);
+      $("#loading").show();
+      $.ajax({
+         type: type,
+         url:action,
+         data:thatForm.serialize(),// 要提交的表单
+         success: function(result) {
+          $("#loading").hide();
+          var panel = thatForm.parents(".tabs-panel");
+          panel.html(result);
+          ajaxsearch(panel.find("form[data-toggle='ajaxsearch']"));
+          buildPagination(panel.find(".pagination[data-toggle='pagination']"));
+         },
+         error: function(error){
+          $("#loading").hide();
+          console.log(error);
+          alertMsg("请求失败","danger");
+        }
+      });
+      return false;
+  })
+ 
 }
 
   // 动态提示

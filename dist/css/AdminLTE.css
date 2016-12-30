@@ -71,9 +71,35 @@ body {
   display: flex;
   flex-direction: column;
 }
+.diy_table_panel .diy_table_head {
+  padding-bottom: 15px;
+}
 .diy_table_panel .diy_table_body {
   height: 100%;
   overflow: auto;
+  margin: 0;
+}
+.diy_table_panel .diy_table_foot {
+  padding-top: 12px;
+}
+.diy_table_panel .diy_table_foot .page_go {
+  width: 80px;
+  margin-left: 12px;
+}
+.diy_table_panel .diy_table_foot .form-control {
+  height: 30px;
+  padding: 6px;
+}
+.diy_table_panel .diy_table_foot .btn {
+  padding: 3px 10px;
+}
+.diy_table_panel .diy_table_foot .dropdown-menu {
+  top: auto;
+  bottom: 100%;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+.diy_table_panel .diy_table_foot .pagination {
   margin: 0;
 }
 .layout-boxed {

@@ -1,20 +1,22 @@
 <div class="diy_table_panel">
   <div class="diy_table_head">
-  <form action="" class="row" style="margin-bottom:15px;">
+  <form action="/include/tables/diytable.html" data-toggle="ajaxsearch" class="row">
+  <input type="hidden" name="pageSize" value="20">
+  <input type="hidden" name="pageCurrent" value="10">
   	<div class="col-xs-4">
   		<div class="input-group">
   	    	<span class="input-group-addon">用户名</span>
-  		    <input type="text" class="form-control">
+  		    <input type="text" name="username" class="form-control">
   		</div>
   	</div>
   	<div class="col-xs-4">
   		<div class="input-group">
   	    	<span class="input-group-addon">E-mail</span>
-  		    <input type="text" class="form-control">
+  		    <input type="text" name="email" class="form-control">
   		</div>
   	</div>
   	<div class="col-xs-4">
-  		<button type="button" class="btn btn-primary">搜索</button>
+  		<button type="submit" class="btn btn-primary">搜索</button>
   	</div>
   </form>
   </div>
@@ -455,32 +457,20 @@
   </div>
   <div class="diy_table_foot">
     <span>每页</span>
-    <div class="btn-group">
-      <button type="button" class="btn btn-default">20</button>
+    <div class="btn-group select_pagesize">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">20</button>
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
         <span class="caret"></span>
-        <span class="sr-only">Toggle Dropdown</span>
+        <span class="sr-only">下拉选择</span>
       </button>
       <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
+        <li><a href="#">20</a></li>
+        <li><a href="#">50</a></li>
+        <li><a href="#">100</a></li>
+        <li><a href="#">500</a></li>
       </ul>
     </div>
-    <div class="input-group pull-right">
-      <input type="text" class="form-control">
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-info btn-flat">Go!</button>
-          </span>
-    </div>
-    <ul class="pagination pagination-sm no-margin pull-right">
-      <li><a href="#">«</a></li>
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">»</a></li>
-    </ul>
+    <span>条，共1999条，当前第1页</span>
+    <div class="pull-right pagination" data-toggle="pagination" data-total="1999" data-page-size="20" data-page-current="50"></div>
   </div>
 </div>
