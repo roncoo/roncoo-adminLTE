@@ -15,6 +15,10 @@
 ##### SSM整合在线预览：[demo.adminlte.roncoo.com/roncoo-adminlte-springmvc](http://demo.adminlte.roncoo.com/roncoo-adminlte-springmvc/)
 
 ###更新日志
+
+####2017-01-03
+1. 添加自定义表格及实例
+2. 优化tab导航
 ####2016-11-11
 1. tab导航右键菜单
 2. 优化滚动条
