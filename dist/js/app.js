@@ -1145,18 +1145,17 @@ function _init() {
           dataType:"html",
           success:function(result){
             $("#loading").hide();
-            // $.each($(result),function(i,item){
-
-            //   if (item.nodeName == "LINK" || item.nodeName == "link") {
-            //     require1(item.href);
-            //   }
-            //   if (item.nodeName == "SCRIPT" || item.nodeName == "script" && !!item.src) {
-            //     require1(item.src);
-            //   }
-            // })
-            $("#navTabs").append('<li url="'+_href+'"><span>'+_text+'</span><a href="javascript:void(0);" class="fa fa-close"></a></li>');
-            $("#content").append('<div class="tabs-panel">'+result+'</div>');
-            showTab($("#navTabs li[url='"+_href+"']"));   
+            var path = _href.indexOf("?") ? _href.substring(0,_href.indexOf("?")):_href;
+            if ($("#navTabs li[url*='"+path+"']").length) {
+                var itab = $("#navTabs li[url*='"+path+"']").eq(0);
+                itab.attr("url",_href);
+                $("#content .tabs-panel").eq(itab.index()).html(result);
+                showTab(itab);  
+            }else{
+              $("#navTabs").append('<li url="'+_href+'"><span>'+_text+'</span><a href="javascript:void(0);" class="fa fa-close"></a></li>');
+              $("#content").append('<div class="tabs-panel">'+result+'</div>');
+              showTab($("#navTabs li[url='"+_href+"']"));   
+            }
           },
           error:function(err){
             $("#loading").hide();
