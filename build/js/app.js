@@ -1131,7 +1131,7 @@ function _init() {
  * 自定义事件
  * -----------------------
  */
-(function ($) {
+$(function () {
   // 打开tab页
   $(".ajax-template").on("click","a[target='navTab']",function(){
     var that = $(this);
@@ -1344,7 +1344,7 @@ $("#smModal").on("click",".modal-footer>.btn-primary",function(){
 
 })
 
-}(jQuery));
+});
 
 var alertsetTime;
 function alertMsg(text,type){
