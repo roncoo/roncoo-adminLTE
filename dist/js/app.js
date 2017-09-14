@@ -1139,6 +1139,12 @@ $(function () {
     var _href = that.attr("href");
     if (!$("#navTabs li[url='"+_href+"']").length) {
 
+        if (_href.substr(0,5) == "http:" || _href.substr(0,6) == "https:") {
+          var html = '<iframe src="'+_href+'" style="width:100%;height:100%;" frameborder="no" border="0" marginwidth="0" marginheight="0"></iframe>';
+          $("#navTabs").append('<li url="'+_href+'"><span>'+_text+'</span><a href="javascript:void(0);" class="fa fa-close"></a></li>');
+          $("#content").append('<div class="tabs-panel">'+html+'</div>');
+          showTab($("#navTabs li[url='"+_href+"']"));  
+        }else{
         $("#loading").show();
         $.ajax({
           url:_href,
@@ -1162,6 +1168,7 @@ $(function () {
             console.log(err)
           }
         })
+       } 
     }else{
       showTab($("#navTabs li[url='"+_href+"']"));      
     }
@@ -1291,7 +1298,7 @@ $(document).on("click","a[target='modal']",function(){
   var that = $(this);
   var href = that.attr("href");
   var method = that.attr("method") == "post"?"post":"get";
-  var modal = that.attr("modal")
+  var modal = that.attr("modal");
   $("#loading").show();
   $.ajax({
     url:href,
